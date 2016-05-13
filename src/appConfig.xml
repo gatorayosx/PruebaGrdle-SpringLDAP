@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/data/jpa"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+   
+	
+	<repositories base-package="com.acme.repositories" />
+	<ldap:context-source
+          url="tireasol47.ral.tirea.es"
+          base="o=TIREA,c=ES"
+   />
+
+   <ldap:ldap-template id="ldapTemplate" />
+   <bean id="personRepo" class="com.example.repo.PersonRepoImpl">
+      <property name="ldapTemplate" ref="ldapTemplate" />
+   </bean>
+</beans>
